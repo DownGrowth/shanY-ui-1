@@ -1,15 +1,13 @@
 <template>
-<div>hi</div>
-<Bk></Bk>
+
+<router-view />
 </template>
 
 <script>
-import Bk from './components/Bk.vue';
+
 
 export default {
   name: 'App',
-  components: {
-   Bk
-  }
+
 }
 </script>
