@@ -23,10 +23,13 @@ export default {
 
 <style lang="scss" scoped>
     .topnav{
-        position: relative;
-        background: pink;
+        background: rgb(233, 242, 248);
         display: flex;
         padding: 16px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
         z-index: 10;
         justify-content: center;
         align-items: center;
@@ -46,7 +49,7 @@ export default {
             display: inline-block;
             width: 24px;
             height: 24px;
-            background: rgb(59, 77, 75);
+            background: rgb(73, 92, 90);
             position: absolute;
             left:16px;
             top:50%;
