@@ -29,8 +29,7 @@ import Topnav from '../components/Topnav.vue'
 export default {
   components: { Topnav },
   setup() {
-    const asideVisible = inject<Ref<boolean>>('xxx')
-    console.log(asideVisible)
+    const asideVisible = inject<Ref<boolean>>('asideVisible')
     return {asideVisible}
    }     
     }
