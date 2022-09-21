@@ -1,15 +1,15 @@
 <template>
     <template v-if="visible">
-        <div>
-    <div class="shanY-dialog-overlay" @click="onClickOverlay"></div>
+        <Teleport to="body">
+            <div class="shanY-dialog-overlay" @click="onClickOverlay"></div>
     <div class="shanY-dialog-wrapper">
         <div class="shanY-dialog">
-        <header>标题
+        <header> 
+            <slot name="title" />
             <span @click="close" class="shanY-dialog-close"></span>
         </header>
         <main>
-            <p>第一行字</p>
-            <p>第二行字</p>
+          <slot name='content'/>
         </main>
         <footer>
             <Button level="main" @click="ok">OK</Button>
@@ -17,12 +17,13 @@
         </footer>
     </div>
     </div>
-</div>
+        </Teleport>
     </template>
 </template>
 
 <script lang="ts">
-import { processExpression } from '@vue/compiler-core'
+
+import { title } from 'process'
 import Button from './Button.vue'
 export default {
     props: {

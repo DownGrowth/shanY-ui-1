@@ -3,7 +3,13 @@
     <h1>示例1</h1>
     <Button @click="toggle">toggle</Button>
     <Dialog v-model:visible="x" :closeOnClickOverlay="false" :ok="f1" :cancel="f2">
-
+        <template v-slot:content>
+            <strong>hi</strong>
+            <div>1</div> 
+        </template>
+         <template v-slot:title>
+            <strong>加粗的标题</strong>
+        </template>
     </Dialog>
 </template>
 <script lang="ts">
@@ -21,7 +27,7 @@ export default {
             x.value=!x.value
         }
         const f1 = () => {
-            
+            return false
         }
         const f2 = () => {
             
