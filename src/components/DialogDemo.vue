@@ -2,7 +2,9 @@
     <div>Dialog 示例</div>
     <h1>示例1</h1>
     <Button @click="toggle">toggle</Button>
-    <Dialog v-model:visible="x" :closeOnClickOverlay="f3" :ok="f1" :cancel="f2">
+    <Dialog v-model:visible="x" 
+    :closeOnClickOverlay="f3" :ok="f1" :cancel="f2"> 
+    <!-- 示例1中的ok等函数由传入的f1控制 -->
         <template v-slot:content>
             <strong>hi</strong>
             <div>1</div> 
@@ -13,6 +15,8 @@
     </Dialog>
     <h1>示例2</h1>
     <Button @click="showDialog">show</Button>
+    <!-- 示例2中的ok等交由传给openDialog的ok自己控制 -->
+    <!-- 示例1、2的ok等都是由Dialog组件判断 -->
 </template>
 <script lang="ts">
 import Dialog from '../lib/Dialog.vue'
@@ -33,12 +37,10 @@ export default {
             return false
         }
         const f2 = () => {
-            
         }
         const f3 = () => {
-          return false
-        }
-       
+            return true
+        }      
         const showDialog = () => {
             openDialog({
                 title: '标题',
@@ -52,11 +54,11 @@ export default {
                 },
                 closeOnClickOverlay() {
                     console.log('123')
-                    
+                    return false
                 }
             })
         }
-            return {x,toggle,f1,f2,showDialog}
+            return {x,toggle,f1,f2,f3,showDialog}
         }
     }
 </script>
