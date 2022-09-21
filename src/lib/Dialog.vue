@@ -12,7 +12,7 @@
           <slot name='content'/>
         </main>
         <footer>
-            <Button level="main" @click="ok">OK</Button>
+            <Button level="main" @click="OK">OK</Button>
             <Button @click="cancel">Cancel</Button>
         </footer>
     </div>
@@ -23,7 +23,6 @@
 
 <script lang="ts">
 
-import { title } from 'process'
 import Button from './Button.vue'
 export default {
     props: {
@@ -32,8 +31,7 @@ export default {
             default:false
         },
         closeOnClickOverlay: {
-            type: Boolean,
-            default:true
+            type:Function,
         },
         ok: {
             type:Function,
@@ -52,21 +50,21 @@ export default {
             context.emit('update:visible',false)
         }
         const onClickOverlay = () => {
-            if (props.closeOnClickOverlay) {
+            if (props.closeOnClickOverlay?.()!==false) {
                 close()
             }
         }
-        const ok = () => {
+        const OK = () => {
             if ( props.ok?.() !== false) {
                 close()
             }
         }
         const cancel = () => {
-            context.emit('cancel')
-            close()
+            props.cancel?.()
+                close()
         }
         return {
-            close,onClickOverlay,ok,cancel
+            close,onClickOverlay,OK,cancel
             }
         }
     }

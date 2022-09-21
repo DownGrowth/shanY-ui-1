@@ -2,7 +2,7 @@
     <div>Dialog 示例</div>
     <h1>示例1</h1>
     <Button @click="toggle">toggle</Button>
-    <Dialog v-model:visible="x" :closeOnClickOverlay="false" :ok="f1" :cancel="f2">
+    <Dialog v-model:visible="x" :closeOnClickOverlay="f3" :ok="f1" :cancel="f2">
         <template v-slot:content>
             <strong>hi</strong>
             <div>1</div> 
@@ -11,11 +11,14 @@
             <strong>加粗的标题</strong>
         </template>
     </Dialog>
+    <h1>示例2</h1>
+    <Button @click="showDialog">show</Button>
 </template>
 <script lang="ts">
 import Dialog from '../lib/Dialog.vue'
 import Button from '../lib/Button.vue'
 import { ref } from 'vue';
+import { openDialog } from '../lib/openDialog';
 export default {
     components: {
         Dialog,
@@ -32,7 +35,28 @@ export default {
         const f2 = () => {
             
         }
-            return {x,toggle,f1,f2}
+        const f3 = () => {
+          return false
+        }
+       
+        const showDialog = () => {
+            openDialog({
+                title: '标题',
+                content: '内容',
+                ok() {
+                    console.log('ok')
+                    return false
+                },
+                cancel() {
+                    console.log('cancel')
+                },
+                closeOnClickOverlay() {
+                    console.log('123')
+                    
+                }
+            })
+        }
+            return {x,toggle,f1,f2,showDialog}
         }
     }
 </script>
