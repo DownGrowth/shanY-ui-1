@@ -1,25 +1,72 @@
 <template>
-    <div class="shanY-dialog-overlay"></div>
+    <template v-if="visible">
+        <div>
+    <div class="shanY-dialog-overlay" @click="onClickOverlay"></div>
     <div class="shanY-dialog-wrapper">
         <div class="shanY-dialog">
-        <header>标题</header>
+        <header>标题
+            <span @click="close" class="shanY-dialog-close"></span>
+        </header>
         <main>
             <p>第一行字</p>
             <p>第二行字</p>
         </main>
         <footer>
-            <Button>OK</Button>
-            <Button>Cancel</Button>
+            <Button level="main" @click="ok">OK</Button>
+            <Button @click="cancel">Cancel</Button>
         </footer>
     </div>
     </div>
+</div>
+    </template>
 </template>
 
 <script lang="ts">
+import { processExpression } from '@vue/compiler-core'
 import Button from './Button.vue'
 export default {
+    props: {
+        visible: {
+            type: Boolean,
+            default:false
+        },
+        closeOnClickOverlay: {
+            type: Boolean,
+            default:true
+        },
+        ok: {
+            type:Function,
+            
+        },
+        cancel: {
+            type:Function,
+            
+        }
+    },
     components:{
             Button
+    },
+    setup(props,context) {
+        const close = () => {
+            context.emit('update:visible',false)
+        }
+        const onClickOverlay = () => {
+            if (props.closeOnClickOverlay) {
+                close()
+            }
+        }
+        const ok = () => {
+            if ( props.ok?.() !== false) {
+                close()
+            }
+        }
+        const cancel = () => {
+            context.emit('cancel')
+            close()
+        }
+        return {
+            close,onClickOverlay,ok,cancel
+            }
         }
     }
 </script>
