@@ -44,14 +44,14 @@ export default {
             }
         })
         const current = computed(() => {
-            return defaults.find(tag=>tag.props.title===props.selected) //找出内容对应的title
+            return defaults.find(tag=>tag.props.title===props.selected) //找到selected对应的title
         }
         )
       const titles= defaults.map((tag) => {
             return tag.props.title  //遍历defaults，找出title
       })
       const select = (title: string) => {
-      context.emit('update:selected', title)//title点击时改变
+      context.emit('update:selected', title)//选中后通知外部组件update:selected,值是title
     }
         return {defaults,titles,select,selectedItem,indicator,container,current}
     } 

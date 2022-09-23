@@ -1,16 +1,29 @@
 <template>
     <div class="topnav">
-        <div class="logo">logo</div>
+        <router-link to="/" class="logo">
+            <svg class="icon">
+    <use xlink:href="#icon-leaf"></use>
+</svg>
+</router-link>
+        
         <ul class="menu">
-            <li>菜单1</li>
-            <li>菜单2</li>
+            <li>
+      <router-link to="/doc">文档</router-link>
+    </li>
         </ul>
-        <span class="toggleAside" @click="toggleAside"></span>
+        <svg v-if="toggleMenuButtonVisible" class="toggleAside" @click="toggleAside">
+        <use xlink:href="#icon-menu"></use></svg>
     </div>
 </template>
 <script lang="ts">
 import { inject, Ref } from 'vue';
 export default {
+    props: {
+        toggleMenuButtonVisible: {
+            type: Boolean,
+            default:false
+        }
+    },
     setup(){
         const asideVisible = inject<Ref<boolean>>('asideVisible')
         const toggleAside = () => {
@@ -22,8 +35,10 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+    $color:#5d4b5f;
     .topnav{
-        background: rgb(233, 242, 248);
+        color:$color;
+        /* background: rgb(233, 242, 248); */
         display: flex;
         padding: 16px;
         position: fixed;
@@ -36,6 +51,13 @@ export default {
         >.logo{
             max-width: 6em;
             margin-right: auto;
+            :hover{
+                animation: shanY-shake 1s infinite linear;
+            }
+            >svg{
+                width: 32px;
+                height: 32px;
+            }
         }
         >.menu {
             display: flex;
@@ -49,7 +71,6 @@ export default {
             display: inline-block;
             width: 24px;
             height: 24px;
-            background: rgb(73, 92, 90);
             position: absolute;
             left:16px;
             top:50%;
@@ -65,5 +86,22 @@ export default {
                 display: inline-block;
             }
         }
+        @keyframes shanY-shake{
+            0%   {
+                transform:rotate(0deg);
+            }
+            25%  {
+                transform:rotate(8deg);}
+            38%  {
+                transform:rotate(-6deg);}
+            50%  {
+                transform:rotate(6deg);}
+            62%  {
+                transform:rotate(-4deg);}
+            75%  {
+                transform:rotate(2deg);}
+            100% {
+                transform:rotate(0deg);}
+    }
     }
 </style>
