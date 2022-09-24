@@ -88,7 +88,7 @@ height: 100%;
   
   >h2{
     margin-bottom:4px;
-    padding:0 16px;
+    padding:0 12px;
   }
   >ol{
     >li{
@@ -96,7 +96,7 @@ height: 100%;
         display: block;
         text-decoration: none;
     
-    padding: 4px 16px;
+    padding: 4px 20px;
       }
       .router-link-active{
         background:  #d7f1dd;;
