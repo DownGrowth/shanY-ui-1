@@ -37,12 +37,14 @@
       </main>
     </div>
   </div>
+  <Mountain />
 </template>
 <script lang="ts">
 import { inject, Ref } from 'vue';
 import Topnav from '../components/Topnav.vue'
+import Mountain from './Mountain.vue';
 export default {
-components: { Topnav },
+components: { Topnav, Mountain },
 setup() {
   const asideVisible = inject<Ref<boolean>>('asideVisible')
   return {asideVisible}
@@ -66,18 +68,20 @@ height: 100vh;
 }
 .content {
 display: flex;
+
 > aside {
   flex-shrink: 0;
-  z-index: 10;
+  z-index: 5;
 }
 > main {
   flex-grow: 1;
   padding: 16px;
-  background: rgb(241, 247, 244);
+  background: rgba(239, 248, 238, 0.4);
+  z-index: 5;
 }
 }
 aside{
-  background:rgb(243, 243, 243);
+  background: rgba(209, 209, 164, 0.2);
   width:150px;
   padding:16px 0;
   position: fixed;
@@ -99,7 +103,7 @@ height: 100%;
     padding: 4px 20px;
       }
       .router-link-active{
-        background:  #d7f1dd;;
+        background:  #e4f5e8;;
         
   }
     }

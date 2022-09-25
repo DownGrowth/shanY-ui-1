@@ -37,60 +37,19 @@
     </ul>
 </div>
     </div>
-    <div class="shanY-bottom">
-    <span class="shanY-bottom-big"></span>
-    <span class="shanY-bottom-little"></span>
-    <span class="shanY-bottom-mid"></span>
-  </div>
+    <Mountain />
 </template>
 <script lang="ts">
 import Topnav from '../components/Topnav.vue'
+import Mountain from './Mountain.vue';
 export default {
-        components:{Topnav}
+        components:{ Topnav, Mountain }
     }
 </script>
 <style lang="scss" scoped>
   $green:#9bcfb1;
   $border-radius:4px;
   $color:#6a5f72;
-
-  @media screen and (max-width:800px){
-    .shanY-bottom{
-      display: none;
-    }
-  }
-  .shanY-bottom-big{
-    position: fixed;
-    right: 26vw;
-    bottom: 0;
-    transform: translateY(50%);
-    min-width: 1200px;
-    min-height: 250px;
-    background: rgb(243, 241, 250);
-    clip-path: ellipse(50% 80% at 38% 80%);
-    z-index: -1;
-  }
-  .shanY-bottom-little{
-      position: fixed;
-    bottom: -100px;
-    left: 54%;
-    width: 300px;
-    height: 100px;
-    background: #bee6c9;
-    clip-path: ellipse(60% 70% at 50% 90%);
-    transform: translate(-50%,-50%);
-    z-index: 10;
-    }
-    .shanY-bottom-mid{
-      position: fixed;
-    bottom: -100px;
-    left: 45%;
-    width: 600px;
-    height: 100px;
-    background: rgb(214, 230, 243);
-    clip-path: ellipse(50% 70% at 50% 80%);
-    transform: translate(-50%,-50%);
-    }
   .topnavAndBanner{
     background: linear-gradient(145deg, rgba(2,0,36,1) 0%, rgba(249,255,239,1) 0%, rgba(231,238,237,1) 100%);
     clip-path: ellipse(80% 60% at 50% 40%);

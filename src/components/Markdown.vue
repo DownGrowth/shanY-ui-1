@@ -19,6 +19,6 @@ export default {
             content.value=result.default
         })
         return {content}
-     }
+     } 
   }
   </script>
