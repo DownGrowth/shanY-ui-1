@@ -56,7 +56,6 @@ export default {
   }
 .features{
   margin: 32px auto 100px;
-  width: 400px;
   @media (min-width: 800px) {
     width: 800px;
   }

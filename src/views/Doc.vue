@@ -71,7 +71,7 @@ display: flex;
 
 > aside {
   flex-shrink: 0;
-  z-index: 5;
+  z-index: 6;
 }
 > main {
   flex-grow: 1;
@@ -80,8 +80,13 @@ display: flex;
   z-index: 5;
 }
 }
+@media screen and (max-width:800px){
+  .layout>.content>aside{
+      background:rgb(246,246,237);
+    }
+  }
 aside{
-  background: rgba(209, 209, 164, 0.2);
+  background: rgba(209, 209, 164,0.2);
   width:150px;
   padding:16px 0;
   position: fixed;

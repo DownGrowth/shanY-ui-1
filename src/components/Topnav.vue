@@ -14,6 +14,7 @@
         <svg v-if="toggleMenuButtonVisible" class="toggleAside" @click="toggleAside">
         <use xlink:href="#icon-menu"></use></svg>
     </div>
+
 </template>
 <script lang="ts">
 import { inject, Ref } from 'vue';
@@ -36,18 +37,25 @@ export default {
 
 <style lang="scss" scoped>
     $color:#5d4b5f;
+    @media screen and (max-width:800px){
+    .topnav{
+        position: fixed;
+      background: rgb(240, 245, 236);
+      height: 42px;
+      box-shadow: 0 0 3px rgb(0 0 0 / 25%);
+    }
+  }
     .topnav{
         color:$color;
-        /* background: rgb(233, 242, 248); */
         display: flex;
         padding: 16px;
         position: fixed;
         top: 0;
         left: 0;
         width: 100%;
-        z-index: 20;
         justify-content: center;
         align-items: center;
+        z-index: 20;
         >.logo{
             max-width: 6em;
             margin-right: auto;
