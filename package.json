@@ -1,6 +1,6 @@
 {
-  "name": "shanY-ui-1",
-  "version": "0.0.1",
+  "name": "shany-ui-1",
+  "version": "0.0.3",
   "files": ["dist/lib/*"],
   "main": "dist/lib/shanY.js",
   "scripts": {
