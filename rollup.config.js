@@ -12,8 +12,8 @@ export default {
     globals: {
       vue: 'Vue'
     },
-    name: 'Gulu',
-    file: 'dist/lib/gulu.js',
+    name: 'shanY',
+    file: 'dist/lib/shanY.js',
     format: 'umd',
     plugins: [terser()]
   },
