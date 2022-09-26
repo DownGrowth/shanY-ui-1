@@ -19,12 +19,12 @@ export default {
   .shanY-bottom-big{
     position: fixed;
     right: 26vw;
-    bottom: 0;
+    bottom: 0px;
     transform: translateY(50%);
     min-width: 1200px;
     min-height: 250px;
     background: rgb(243, 241, 250);
-    clip-path: ellipse(50% 80% at 38% 80%);
+    clip-path: ellipse(40% 80% at 38% 80%);
     z-index: 3;
   }
   .shanY-bottom-little{
