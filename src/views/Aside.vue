@@ -1,6 +1,6 @@
 <template>
-  <transition :name="transitionName">
-    <aside v-if="asideVisible" >
+
+    <aside v-if="asideVisible"  >
       <h2>文档</h2>
       <ol>
         <li>
@@ -30,16 +30,18 @@
         </li>
       </ol>
     </aside>
-</transition>
+
 </template>
 
 <script lang="ts">
-    import { inject, Ref, watchEffect } from 'vue';
+    import { inject, Ref} from 'vue';
 export default {
    
     setup() {
         const asideVisible = inject<Ref<boolean>>('asideVisible')
-        return { asideVisible, transitionName: "transitionName" }     
+            
+        return { asideVisible}   
+          
             }
     }
 </script>
@@ -49,7 +51,6 @@ export default {
 @media screen and (max-width:800px){
   .layout>.content>aside{
       background:rgb(246,246,237);
-      animation: shanY-slide 150ms  linear;
     }
   }
 aside{
@@ -80,13 +81,13 @@ height: 100%;
   }
     }
   }
-  @keyframes shanY-slide{
+  /* @keyframes shanY-slide{
     from{
 transform: translateX(-100px);
 }
 to{
 transform: translateX(0px);
 }
-    }
+    } */
 }
 </style>
