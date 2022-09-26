@@ -1,6 +1,5 @@
-
 <template>
-    <button class="shanY-switch" @click="toggle" :class="{'shanY-checked':value}">
+<button class="shanY-switch" @click="toggle" :class="{'shanY-checked':value}">
         <span></span>
     </button>
 </template>

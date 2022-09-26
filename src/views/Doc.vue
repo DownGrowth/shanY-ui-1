@@ -4,8 +4,7 @@
     <Topnav :toggleMenuButtonVisible="true" class="nav"/>
     <div class="content" >
     
-    <Aside/> 
-     
+    <Aside class="a" v-if="asideVisible" />
       <main @click="toggleAsideVisible">
         <div class="darken" v-if="asideVisible"></div>
         <router-view/>
@@ -59,6 +58,9 @@ components: { Topnav, Mountain, Aside },
 </script>
 <style lang="scss" scoped>
   @media screen and (max-width:500px){
+    .a{
+      animation: shanY-slide 0.15s  linear;
+    }
     .darken{
   position: fixed;
     top: 0;
@@ -100,4 +102,12 @@ display: flex;
 main {
 overflow: auto;
 }
+@keyframes shanY-slide{
+    from{
+transform: translateX(-100px);
+}
+to{
+transform: translateX(0px);
+}
+    }
 </style>
