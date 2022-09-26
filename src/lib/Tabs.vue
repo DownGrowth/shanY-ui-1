@@ -35,7 +35,7 @@ export default {
       } = selectedItem.value.getBoundingClientRect()
       const left = left2 - left1
       indicator.value.style.left = left + 'px'
-      })
+      },{flush:'post'})
     })
         const defaults = context.slots.default()//获取插槽slot内容
         defaults.forEach((tag) => { 
