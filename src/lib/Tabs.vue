@@ -38,8 +38,8 @@ export default {
       })
     })
         const defaults = context.slots.default()//获取插槽slot内容
-        defaults.forEach((tag) => {
-            if(tag.type !== Tab) {
+        defaults.forEach((tag) => { 
+            if(tag.type.name !== Tab.name) {
                 throw new Error('Tabs 子标签必须是Tab')
             }
         })
