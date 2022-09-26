@@ -31,7 +31,11 @@ export default {
         },
         cancel() {
           console.log('cancel')
-        }
+        },
+        closeOnClickOverlay() {
+                    console.log('123')
+                    return false
+                }
       })
     }
     return {

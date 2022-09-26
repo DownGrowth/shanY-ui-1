@@ -1,58 +1,75 @@
 <template>
+
   <div class="layout">
     <Topnav :toggleMenuButtonVisible="true" class="nav"/>
-    <div class="content">
-      <aside v-if="asideVisible">
-        <h2>文档</h2>
-        <ol>
-          <li>
-            <router-link to="/doc/intro">介绍</router-link>
-          </li>
-        
-          <li>
-            <router-link to="/doc/install">安装</router-link>
-          </li>
-          <li>
-            <router-link to="/doc/get-started">开始使用</router-link>
-          </li>
-        </ol>
-        <h2>组件列表</h2>
-        <ol>
-          <li>
-            <router-link to="/doc/switch">Switch 组件</router-link>
-          </li>
-          <li>
-            <router-link to="/doc/button">Button 组件</router-link>
-          </li>
-          <li>
-            <router-link to="/doc/dialog">Dialog 组件</router-link>
-          </li>
-          <li>
-            <router-link to="/doc/tabs">Tabs 组件</router-link>
-          </li>
-        </ol>
-      </aside>
-      <main>
+    <div class="content" >
+    
+    <Aside/> 
+     
+      <main @click="toggleAsideVisible">
+        <div class="darken" v-if="asideVisible"></div>
         <router-view/>
       </main>
+
     </div>
   </div>
   <Mountain />
 </template>
 <script lang="ts">
-import { inject, Ref } from 'vue';
+import { inject, reactive, Ref, watchEffect, onMounted, onUnmounted } from 'vue';
 import Topnav from '../components/Topnav.vue'
 import Mountain from './Mountain.vue';
+import Aside from './Aside.vue';
+import {
+    debounce
+} from '../utils/debounce';
 export default {
-components: { Topnav, Mountain },
-setup() {
-  const asideVisible = inject<Ref<boolean>>('asideVisible')
-  return {asideVisible}
+ 
+components: { Topnav, Mountain, Aside },
+  setup() {
+    const asideVisible = inject<Ref<boolean>>('asideVisible')
+      const data = reactive({
+            listenerPageWidthFn: () => {},
+            pageWidth: document.documentElement.clientWidth
+      })
+      const watchPageWidth = () => {
+            const listenerPageWidth = debounce(() => {
+                data.pageWidth = document.documentElement.clientWidth;
+            }, 300);
+            window.addEventListener("resize", listenerPageWidth);
+            return listenerPageWidth;
+        };
+    const toggleAsideVisible = () => {
+      if (data.pageWidth <= 500){ asideVisible!.value=false}
+    }
+    watchEffect(() => {
+            if (data.pageWidth >= 500) {
+              asideVisible!.value = true;
+            }
+        })
+        onMounted(() => {
+            data.listenerPageWidthFn = watchPageWidth();
+        })
+        onUnmounted(() => {
+            window.removeEventListener("resize", data.listenerPageWidthFn);
+        })
+  return {data,asideVisible,toggleAsideVisible,watchPageWidth}
  }     
   }
 </script>
 <style lang="scss" scoped>
- 
+  @media screen and (max-width:500px){
+    .darken{
+  position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: fade_out(black, 0.5);
+  }
+
+
+}
 .layout {
 display: flex;
 flex-direction: column;
@@ -79,40 +96,6 @@ display: flex;
   background: rgba(239, 248, 238, 0.4);
   z-index: 5;
 }
-}
-@media screen and (max-width:800px){
-  .layout>.content>aside{
-      background:rgb(246,246,237);
-    }
-  }
-aside{
-  background: rgba(209, 209, 164,0.2);
-  width:150px;
-  padding:16px 0;
-  position: fixed;
-top: 0;
-left: 0;
-padding-top: 70px;
-height: 100%;
-  
-  >h2{
-    margin-bottom:4px;
-    padding:0 12px;
-  }
-  >ol{
-    >li{
-      >a{
-        display: block;
-        text-decoration: none;
-    
-    padding: 4px 20px;
-      }
-      .router-link-active{
-        background:  #e4f5e8;;
-        
-  }
-    }
-  }
 }
 main {
 overflow: auto;
