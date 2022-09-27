@@ -6,7 +6,7 @@
     </div>
     </template>
 <script lang="ts">
-import Button from '../lib/Button.vue'
+import {Button} from '../lib/index'
 import { ref } from 'vue';
 import Switch1Demo from './Switch1.demo.vue';
 import Switch2Demo from './Switch2.demo.vue';

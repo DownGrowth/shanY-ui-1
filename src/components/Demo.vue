@@ -14,7 +14,7 @@
     </div>
 </template>
 <script lang="ts">
-import Button from '../lib/Button.vue';
+import {Button} from '../lib/index';
 import 'prismjs';
 import 'prismjs/themes/prism.css'
 import { computed, ref } from 'vue';
