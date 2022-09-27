@@ -3,8 +3,10 @@
   <div class="layout">
     <Topnav :toggleMenuButtonVisible="true" class="nav"/>
     <div class="content" >
-    
-    <Aside class="a" v-if="asideVisible" />
+    <transition name="slide">
+      <Aside  v-if="asideVisible" />
+    </transition>
+   
       <main @click="toggleAsideVisible">
         <div class="darken" v-if="asideVisible"></div>
         <router-view/>
@@ -58,8 +60,11 @@ components: { Topnav, Mountain, Aside },
 </script>
 <style lang="scss" scoped>
   @media screen and (max-width:500px){
-    .a{
-      animation: shanY-slide 0.15s  linear;
+    .slide-enter-active{
+      animation: shanY-slide 0.15s linear;
+    }
+    .slide-leave-active{
+      animation: shanY-slide 0.15s reverse linear;
     }
     .darken{
   position: fixed;
